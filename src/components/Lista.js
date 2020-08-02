@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-const apiURL= 'http://procyon-backend.herokuapp.com/solicitudes'
+const apiURL= 'http://procyon.matisanh.cl/solicitudes'
 
 export default class Lista extends React.Component{
 	state={
