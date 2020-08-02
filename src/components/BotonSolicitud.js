@@ -1,46 +1,36 @@
-import React from 'react'
-import Button from '@material-ui/core/Button';
-import TablaSolicitud from './TablaSolicitud'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import NavigationIcon from '@material-ui/icons/Navigation';
 
-function BotonOn(props) {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1),
+  },
+}));
+
+
+export default function FloatingActionButtons() {
+  const classes = useStyles();
+
   return (
-    <button onClick={props.onClick}>
-      Listar Solicitudes
-    </button>
+    <div className={classes.root}>
+      <Fab variant="extended" color="secondary" aria-label="add" size="medium" href="/solicitudes/crear">
+        <AddIcon /> 
+        Crear
+      </Fab>
+      <Fab variant="extended" color="secondary" size="medium" href="/solicitudes/listar">
+        <NavigationIcon className={classes.extendedIcon} />
+        Listar
+      </Fab>
+    </div>
   );
 }
-
-function BotonOff(props) {
-  return (
-    <button onClick={props.onClick}>
-      Esconder Solicitudes
-    </button>
-  );
-}
-
-class BotonSolicitud extends React.Component{
-	state={
-		esVisible: false
-	};
-	Visible(){
-		this.setState({esVisible:true});
-	}
-	noVisible(){
-		this.setState({esVisible:false});
-	}
-	render(){
-		const visible = this.state.esVisible;
-		let button; 
-		if(visible){
-			button = <BotonOff onClick={this.noVisible}/>;
-		} else {
-			button = <BotonOn onClick={this.Visible}/>;
-		}
-		return(
-			<div>
-				{button}
-			</div>
-			);
-	}
-}
-export default BotonSolicitud;

@@ -8,9 +8,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
 
 const apiURL= 'http://procyon.matisanh.cl/solicitudes'
 
@@ -57,9 +54,6 @@ export default class TablaSolicitud extends React.Component {
               <TableCell >{data.idPatient}</TableCell>
               <TableCell >{data.procedureType}</TableCell>
               <TableCell >{data.idRequester}</TableCell>
-              <Fab variant="round" color="secondary" aria-label="edit" size="small" href="/solicitudes/editar">
-                <EditIcon />
-              </Fab>
             </TableRow>
           ))}
         </TableBody>
