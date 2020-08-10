@@ -159,13 +159,7 @@ export default class CrearSolicitud extends React.Component {
                     {activeStep !== 0 && (
                       <Button onClick={this.handleBack}>Back</Button>
                     )}
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={this.handleNext}
-                    >
-                      {activeStep === steps.length - 1 ? "Book Now" : "Next"}
-                    </Button>
+
                   </div>
                 </React.Fragment>
               )}

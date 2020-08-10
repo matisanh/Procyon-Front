@@ -5,8 +5,10 @@ import {
   Typography,
   TextField,
   FormControl,
+  Button,
   Select,
   Input,
+  InputLabel,
   MenuItem,
   FormHelperText
 } from "@material-ui/core/";
@@ -25,43 +27,34 @@ export class QuoteForm extends React.Component {
 
     return (
       <React.Fragment>
-        <Typography variant="h5" align="center">
-          Enter your zip code for a quick quote
+        <Typography variant="h5" style={{marginBottom: 1 + 'em'}} align="center">
+          Para generar una solicitud, complete los siguientes campos.
+
         </Typography>
         <Grid container spacing={2}>
+
           <Grid item >
-            <TextField
-              error={!!this.props.errorMessage.id}
-              required
-              id="id"
-              name="id"
-              label="ID"
-              fullWidth
-              autoComplete="billing postal-code"
-              value={this.props.id}
-              onChange={this.props.handleChange}
-              helperText={
-                this.props.errorMessage.id &&
-                this.props.errorMessage.id
-              }
-            />
-          </Grid>
-          <Grid item >
-            <TextField
+           <InputLabel id="demo-mutiple-checkbox-label">Tipo Recurso</InputLabel>
+            <Select
               error={!!this.props.errorMessage.tipo_recurso}
               required
               id="tipo_recurso"
               name="tipo_recurso"
               label="Tipo Recurso"
               fullWidth
-              autoComplete="billing postal-code"
               value={this.props.tipo_recurso}
               onChange={this.props.handleChange}
               helperText={
                 this.props.errorMessage.tipo_recurso &&
                 this.props.errorMessage.tipo_recurso
-              }
-            />
+              }>
+                <MenuItem value="0">
+                  <em>N.A.</em>
+                </MenuItem>
+                <MenuItem value={1}>Pabellón</MenuItem>
+                <MenuItem value={2}>Sillón</MenuItem>
+                <MenuItem value={3}>Personal</MenuItem>
+            </Select>
           </Grid>
           <Grid item >
             <TextField
@@ -81,7 +74,9 @@ export class QuoteForm extends React.Component {
             />
           </Grid>
           <Grid item >
-            <TextField
+          <InputLabel id="demo-mutiple-checkbox-label">Tipo de Procedimiento</InputLabel>
+            <Select
+              labelId="demo-mutiple-checkbox-label"
               error={!!this.props.errorMessage.tipo_procedimiento}
               required
               id="tipo_procedimiento"
@@ -95,7 +90,12 @@ export class QuoteForm extends React.Component {
                 this.props.errorMessage.tipo_procedimiento &&
                 this.props.errorMessage.tipo_procedimiento
               }
-            />
+              >
+                <MenuItem value={0}>Urgencia</MenuItem>
+                <MenuItem value={1}>Cirugía</MenuItem>
+                <MenuItem value={2}>Consulta</MenuItem>
+                <MenuItem value={3}>Odontología</MenuItem>
+            </Select>
           </Grid>
           <Grid item >
             <TextField
@@ -112,8 +112,19 @@ export class QuoteForm extends React.Component {
                 this.props.errorMessage.id_solicitante &&
                 this.props.errorMessage.id_solicitante
               }
-            />
+            />      
+             
           </Grid>
+
+          <Grid item>
+          <Button
+              variant="contained" 
+              color="primary" 
+              onClick={e => this.onSubmit(e)}>
+              Generar
+            </Button>
+          </Grid>
+          
         </Grid>
       </React.Fragment>
     );
