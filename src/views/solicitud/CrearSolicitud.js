@@ -1,67 +1,178 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import FilledInput from '@material-ui/core/FilledInput';
-import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
+import React from "react";
+import { QuoteForm } from "./QuoteForm";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { Paper, Typography, Button } from "@material-ui/core";
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1
     },
-  },
-}));
-
-export default function CrearSolicitud() {
-  const [name, setName] = React.useState('Composed TextField');
-  const classes = useStyles();
-
-  const handleChange = (event) => {
-    setName(event.target.value);
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: "center",
+      color: theme.palette.text.secondary
+    }
+  })
+);
+export default class CrearSolicitud extends React.Component {
+  state = {
+    activeStep: 0,
+    id: "",
+    tipo_recurso: "",
+    id_paciente: "",
+    tipo_procedimiento: "",
+    id_solicitante: "",
+    labelWidth: 0,
+    error: false,
+    errorMessage: {}
   };
 
-  return (
-    <form className={classes.root} noValidate autoComplete="off">
-      <FormControl>
-        <InputLabel htmlFor="component-simple">Name</InputLabel>
-        <Input id="component-simple" value={name} onChange={handleChange} />
-      </FormControl>
-      <FormControl>
-        <InputLabel htmlFor="component-helper">Name</InputLabel>
-        <Input
-          id="component-helper"
-          value={name}
-          onChange={handleChange}
-          aria-describedby="component-helper-text"
-        />
-        <FormHelperText id="component-helper-text">Some important helper text</FormHelperText>
-      </FormControl>
-      <FormControl disabled>
-        <InputLabel htmlFor="component-disabled">Name</InputLabel>
-        <Input id="component-disabled" value={name} onChange={handleChange} />
-        <FormHelperText>Disabled</FormHelperText>
-      </FormControl>
-      <FormControl error>
-        <InputLabel htmlFor="component-error">Name</InputLabel>
-        <Input
-          id="component-error"
-          value={name}
-          onChange={handleChange}
-          aria-describedby="component-error-text"
-        />
-        <FormHelperText id="component-error-text">Error</FormHelperText>
-      </FormControl>
-      <FormControl variant="outlined">
-        <InputLabel htmlFor="component-outlined">Name</InputLabel>
-        <OutlinedInput id="component-outlined" value={name} onChange={handleChange} label="Name" />
-      </FormControl>
-      <FormControl variant="filled">
-        <InputLabel htmlFor="component-filled">Name</InputLabel>
-        <FilledInput id="component-filled" value={name} onChange={handleChange} />
-      </FormControl>
-    </form>
-  );
+  getStepContent = step => {
+    switch (step) {
+      case 0:
+        return (
+          <div>
+            <QuoteForm
+              {...this.state}
+              {...this.state.value}
+              handleChange={this.handleChange}
+            />
+          </div>
+        );
+      case 1:
+        return (
+          <div>Solicitud Creada</div>
+        );
+      default:
+        throw new Error("Unknown step");
+    }
+  };
+
+  handleNext = () => {
+    let isError = false;
+    if (this.state.id.length < 2) {
+      isError = true;
+      this.setState({
+        error: true,
+        errorMessage: { id: "Ingrese un ID correcto" }
+      });
+    }
+    if (this.state.tipo_recurso === "") {
+      isError = true;
+      this.setState(prev => ({
+        ...prev,
+        error: true,
+        errorMessage: {
+          ...prev.errorMessage,
+          tipo_recurso: "Ingrese tipo de recurso correcto"
+        }
+      }));
+    }
+    if (this.state.id_paciente.length < 2) {
+      isError = true;
+      this.setState(prev => ({
+        ...prev,
+        error: true,
+        errorMessage: {
+          ...prev.errorMessage,
+          id_paciente: "Ingrese un ID de paciente correcto"
+        }
+      }));
+    }
+    if (this.state.tipo_procedimiento.length < 2) {
+      isError = true;
+      this.setState(prev => ({
+        ...prev,
+        error: true,
+        errorMessage: {
+          ...prev.errorMessage,
+          tipo_procedimiento: "Ingrese un tipo de procedimiento correcto"
+        }
+      }));
+    }
+    if (this.state.id_solicitante.length < 2) {
+      isError = true;
+      this.setState(prev => ({
+        ...prev,
+        error: true,
+        errorMessage: {
+          ...prev.errorMessage,
+          id_solicitante: "Ingrese un ID de solicitante correcto"
+        }
+      }));
+    }
+    if (!isError) {
+      //add else if for validating other fields (if any)
+      this.setState(prevState => ({
+        activeStep: prevState.activeStep + 1,
+        error: false,
+        errorMessage: {}
+      }));
+    }
+  };
+
+  handleBack = () => {
+    this.setState(state => ({
+      activeStep: state.activeStep - 1,
+      tipo_recurso: "",
+      id_paciente: "",
+      tipo_procedimiento: "",
+      id_solicitante: "",
+      id: ""
+    }));
+  };
+
+  handleReset = () => {
+    this.setState({
+      activeStep: 0
+    });
+  };
+
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  render() {
+    const { classes } = this.props;
+    const { activeStep } = this.state;
+    const steps = ["Pick Up Address", "Select Your Vehicle"];
+
+    return (
+      <React.Fragment>
+        {/* <CssBaseline /> */}
+        <main>
+          <Paper>
+            <React.Fragment>
+              {activeStep === steps.length ? (
+                <React.Fragment>
+                  <Typography variant="h5" gutterBottom>
+                    Thank you for your interest!
+                  </Typography>
+                </React.Fragment>
+              ) : (
+                <React.Fragment>
+                  {this.getStepContent(activeStep)}
+                  <div>
+                    {activeStep !== 0 && (
+                      <Button onClick={this.handleBack}>Back</Button>
+                    )}
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={this.handleNext}
+                    >
+                      {activeStep === steps.length - 1 ? "Book Now" : "Next"}
+                    </Button>
+                  </div>
+                </React.Fragment>
+              )}
+            </React.Fragment>
+          </Paper>
+        </main>
+      </React.Fragment>
+    );
+  }
 }

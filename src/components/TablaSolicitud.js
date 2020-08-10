@@ -25,14 +25,17 @@ const useStyles = makeStyles({
 export default class TablaSolicitud extends React.Component {
   state={
     data:[],
+    recurso:{}
   };
   componentDidMount(){
     axios.get(apiURL).then(res=>{
         console.log(res);
         this.setState({data: res.data});
       }); 
+    
     }
   //const classes = useStyles();
+  
 
   render(){
   return (
