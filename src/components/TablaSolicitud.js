@@ -12,7 +12,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 
-const apiURL= 'http://procyon.matisanh.cl/solicitudes'
+const apiURL= 'https://procyon.matisanh.cl/solicitudes'
 
 const useStyles = makeStyles({
   table: {
