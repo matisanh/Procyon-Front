@@ -31,6 +31,7 @@ export default function BarraNavegacion() {
           <Button color="inherit" href="/home">SIGO</Button>
           <Button color="inherit" href="/solicitudes">Solicitudes</Button>
           <Button color="inherit" href="/reservas">Reservas</Button>	
+          <Button color="inherit" href="/horarios">Horarios</Button>	
         </Toolbar>
       </AppBar>
     </div>
