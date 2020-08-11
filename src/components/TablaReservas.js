@@ -12,7 +12,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 
-const apiURL= 'https://procyon.matisanh.cl/solicitudes'
+const apiURL= 'https://procyon.matisanh.cl/reservas'
 
 const useStyles = makeStyles({
   table: {
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 
 
 
-export default class TablaSolicitud extends React.Component {
+export default class TablaReservas extends React.Component {
   state={
     data:[],
     recurso:{}
@@ -44,10 +44,17 @@ export default class TablaSolicitud extends React.Component {
         <TableHead>
           <TableRow>
             <TableCell>ID</TableCell>
-            <TableCell >Tipo de Recurso</TableCell>
+            <TableCell >ID Solicitud</TableCell>
             <TableCell >ID Paciente</TableCell>
+            <TableCell >Tipo de Recurso</TableCell>
+            <TableCell >ID Recurso</TableCell>
             <TableCell >Tipo de Procedimiento</TableCell>
-            <TableCell >ID Solicitante</TableCell>
+            <TableCell >Fecha Reserva</TableCell>
+            <TableCell >Bloque Reservado</TableCell>
+            <TableCell >N° Bloques</TableCell>
+            <TableCell >Fecha de peticion</TableCell>
+            <TableCell >Estado</TableCell>
+            <TableCell >Bloques Reservados</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -56,10 +63,17 @@ export default class TablaSolicitud extends React.Component {
               <TableCell component="th" scope="row">
                 {data.id}
               </TableCell>
-              <TableCell >{data.resourceType==0 ? (<p>N.A</p>) : (data.resourceType==1 ?(<p>Pabellón</p>):(data.resourceType==2 ?(<p>Sillón</p>):(data.resourceType==3 ?(<p>Personal</p>):(<p>{data.resourceType}</p>))))}</TableCell>
-              <TableCell >{data.idPatient}</TableCell>
-              <TableCell >{data.procedureType==0 ? (<p>Urgencia</p>) : (data.procedureType==1 ?(<p>Cirugia</p>):(data.procedureType==2 ?(<p>Consulta</p>):(data.procedureType==3 ?(<p>Odontologia</p>):(<p>{data.procedureType}</p>))))}</TableCell>
-              <TableCell >{data.idRequester}</TableCell>
+              <TableCell >{data.idSolicitud}</TableCell>
+              <TableCell >{data.idPaciente}</TableCell>
+              <TableCell >{data.resourceType}</TableCell>
+              <TableCell >{data.resourseID}</TableCell>
+              <TableCell >{data.procedureType}</TableCell>
+              <TableCell >{data.dateReserved}</TableCell>
+              <TableCell >{data.reservedBlock}</TableCell>
+              <TableCell >{data.nReservedBlocks}</TableCell>
+              <TableCell >{data.dateLog}</TableCell>
+              <TableCell >{data.status}</TableCell>
+              <TableCell >{data.blocksReserved}</TableCell>
               <Fab variant="round" color="secondary" aria-label="edit" size="small" href="/solicitudes/editar">
                 <EditIcon />
               </Fab>

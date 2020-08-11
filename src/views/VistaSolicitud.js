@@ -7,6 +7,7 @@ export default function VistaSolicitud(){
 	return(
 		<div className="VistaSolicitud" align='center'>
 		  <BotonSolicitud/>
+		  <h1>Solicitudes</h1>
 	    </div>
 		);
 }

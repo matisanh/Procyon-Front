@@ -23,7 +23,11 @@ export default function FloatingActionButtons() {
 
   return (
     <div className={classes.root}>
-      <Fab variant="extended" color="secondary" size="medium" href="/solicitudes/listar">
+      <Fab variant="extended" color="secondary" aria-label="add" size="medium" href="/reservas/crear">
+        <AddIcon /> 
+        Crear
+      </Fab>
+      <Fab variant="extended" color="secondary" size="medium" href="/reservas/listar">
         <NavigationIcon className={classes.extendedIcon} />
         Listar
       </Fab>

@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import '../App.css';
-import BotonReservas from '../components/BotonReservas'
+import Calendario from './reservas/Calendario'
 
-export default function VistaReservas() {
+export default function VistaBeta() {
   return (
   	<div classname='App-background' align='center'>
-  		<BotonReservas/>
     	<h1>Reservas</h1>
+    	<Calendario/>
     </div>
   );
 }

@@ -6,9 +6,12 @@ import VistaSolicitud from '../views/VistaSolicitud'
 import VistaHome from '../views/VistaHome'
 import VistaReservas from '../views/VistaReservas'
 import CrearSolicitud from '../views/solicitud/CrearSolicitud'
+import CrearReservas from '../views/reservas/CrearReservas'
 import EditarSolicitud from '../views/solicitud/EditarSolicitud'
 import ListarSolicitud from '../views/solicitud/ListarSolicitud'
-import VistaHorario from '../views/VistaHorario';
+import ListarReservas from '../views/reservas/ListarReservas'
+import VistaHorario from '../views/VistaHorario'
+import VistaBeta from '../views/VistaBeta'
 
 export default function Rutas(){
 	return(
@@ -35,6 +38,15 @@ export default function Rutas(){
           </Route>
           <Route path='/reservas'>
             <VistaReservas/>
+          </Route>
+          <Route path='/reservas/crear'>
+            <CrearReservas/>
+          </Route>
+          <Route path='/reservas/listar'>
+            <ListarReservas/>
+          </Route>
+          <Route path='/beta'>
+            <VistaBeta/>
           </Route>
           <Route path='/horarios'>
             <VistaHorario/>
