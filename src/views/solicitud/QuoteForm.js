@@ -239,7 +239,7 @@ export class QuoteForm extends React.Component {
           <Button
               variant="contained" 
               color="primary" 
-              onClick={this.props.error==false ? (this.handleNext):(this.sendData)}>
+              onClick={this.sendData}>
               Generar
             </Button>
           </FormControl>
