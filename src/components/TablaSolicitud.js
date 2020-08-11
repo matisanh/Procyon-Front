@@ -12,7 +12,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 
-const apiURL= 'http://procyon.matisanh.cl/solicitudes'
+const apiURL= 'https://procyon.matisanh.cl/solicitudes'
 
 const useStyles = makeStyles({
   table: {
@@ -56,7 +56,7 @@ export default class TablaSolicitud extends React.Component {
               <TableCell component="th" scope="row">
                 {data.id}
               </TableCell>
-              <TableCell >{data.resourceType}</TableCell>
+              <TableCell >{data.resourceType==3 ? (<p>HEY</p>) : (data.resourceType==5 ?(<p>HoY</p>):(<p>{data.resourceType}</p>))}</TableCell>
               <TableCell >{data.idPatient}</TableCell>
               <TableCell >{data.procedureType}</TableCell>
               <TableCell >{data.idRequester}</TableCell>
