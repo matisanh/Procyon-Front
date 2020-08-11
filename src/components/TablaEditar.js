@@ -9,7 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const apiURL= 'http://procyon.matisanh.cl/solicitudes'
+const apiURL= 'https://procyon.matisanh.cl/solicitudes'
 
 const useStyles = makeStyles({
   table: {

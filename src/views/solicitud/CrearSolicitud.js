@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme: Theme) =>
 export default class CrearSolicitud extends React.Component {
   state = {
     activeStep: 0,
-    id: "",
     tipo_recurso: "",
     id_paciente: "",
     tipo_procedimiento: "",
@@ -48,69 +47,7 @@ export default class CrearSolicitud extends React.Component {
     }
   };
 
-  handleNext = () => {
-    let isError = false;
-    if (this.state.id.length < 2) {
-      isError = true;
-      this.setState({
-        error: true,
-        errorMessage: { id: "Ingrese un ID correcto" }
-      });
-    }
-    if (this.state.tipo_recurso === "") {
-      isError = true;
-      this.setState(prev => ({
-        ...prev,
-        error: true,
-        errorMessage: {
-          ...prev.errorMessage,
-          tipo_recurso: "Ingrese tipo de recurso correcto"
-        }
-      }));
-    }
-    if (this.state.id_paciente.length < 2) {
-      isError = true;
-      this.setState(prev => ({
-        ...prev,
-        error: true,
-        errorMessage: {
-          ...prev.errorMessage,
-          id_paciente: "Ingrese un ID de paciente correcto"
-        }
-      }));
-    }
-    if (this.state.tipo_procedimiento.length < 2) {
-      isError = true;
-      this.setState(prev => ({
-        ...prev,
-        error: true,
-        errorMessage: {
-          ...prev.errorMessage,
-          tipo_procedimiento: "Ingrese un tipo de procedimiento correcto"
-        }
-      }));
-    }
-    if (this.state.id_solicitante.length < 2) {
-      isError = true;
-      this.setState(prev => ({
-        ...prev,
-        error: true,
-        errorMessage: {
-          ...prev.errorMessage,
-          id_solicitante: "Ingrese un ID de solicitante correcto"
-        }
-      }));
-    }
-    if (!isError) {
-      //add else if for validating other fields (if any)
-      this.setState(prevState => ({
-        activeStep: prevState.activeStep + 1,
-        error: false,
-        errorMessage: {}
-      }));
-    }
-  };
-
+  
   handleBack = () => {
     this.setState(state => ({
       activeStep: state.activeStep - 1,
@@ -159,13 +96,6 @@ export default class CrearSolicitud extends React.Component {
                     {activeStep !== 0 && (
                       <Button onClick={this.handleBack}>Back</Button>
                     )}
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={this.handleNext}
-                    >
-                      {activeStep === steps.length - 1 ? "Book Now" : "Next"}
-                    </Button>
                   </div>
                 </React.Fragment>
               )}

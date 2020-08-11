@@ -8,6 +8,7 @@ import VistaReservas from '../views/VistaReservas'
 import CrearSolicitud from '../views/solicitud/CrearSolicitud'
 import EditarSolicitud from '../views/solicitud/EditarSolicitud'
 import ListarSolicitud from '../views/solicitud/ListarSolicitud'
+import VistaHorario from '../views/VistaHorario';
 
 export default function Rutas(){
 	return(
@@ -34,6 +35,9 @@ export default function Rutas(){
           </Route>
           <Route path='/reservas'>
             <VistaReservas/>
+          </Route>
+          <Route path='/horarios'>
+            <VistaHorario/>
           </Route>
         </React.Fragment>
       </Switch>

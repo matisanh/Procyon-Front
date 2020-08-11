@@ -63,6 +63,10 @@ export default class TablaSolicitud extends React.Component {
               <Fab variant="round" color="secondary" aria-label="edit" size="small" href="/solicitudes/editar">
                 <EditIcon />
               </Fab>
+
+              <Fab color="primary" aria-label="validar" size="small" href="/reservas/crear">
+                <AddIcon />
+              </Fab>
             </TableRow>
           ))}
         </TableBody>
