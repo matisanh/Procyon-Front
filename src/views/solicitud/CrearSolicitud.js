@@ -17,10 +17,10 @@ const useStyles = makeStyles((theme: Theme) =>
 export default class CrearSolicitud extends React.Component {
   state = {
     activeStep: 0,
-    resourceType: "",
-    idPatient: "",
-    procedureType: "",
-    idRequester: "",
+    tipo_recurso: "",
+    id_paciente: "",
+    tipo_procedimiento: "",
+    id_solicitante: "",
     labelWidth: 0,
     error: false,
     errorMessage: {}
@@ -47,6 +47,7 @@ export default class CrearSolicitud extends React.Component {
     }
   };
 
+  
   handleBack = () => {
     this.setState(state => ({
       activeStep: state.activeStep - 1,

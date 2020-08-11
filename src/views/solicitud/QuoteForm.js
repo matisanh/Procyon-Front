@@ -1,6 +1,7 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
 import DateFnsUtils from '@date-io/date-fns';
+import axios from 'axios'
 import {
   Grid,
   Typography,
@@ -21,21 +22,34 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
-import axios from "axios"
+
+const URL = 'https://procyon.matisanh.cl/solicitudes';
 
 export class QuoteForm extends React.Component {
   state = {
     id: this.props.id,
-    resourceType: this.props.resourceType,
-    idPatient: this.props.idPatient,
-    procedureType: this.props.procedureType,
-    idRequester: this.props.idRequester
+    tipo_recurso: this.props.tipo_recurso,
+    id_paciente: this.props.id_paciente,
+    tipo_procedimiento: this.props.tipo_procedimiento,
+    id_solicitante: this.props.id_solicitante
   };
+
+  
 
   handleNext = () => {
     let isError = false;
-    console.log(this.props);
+    const formData = {
+      resourceType: this.props.tipo_recurso,
+      idPatient: this.props.id_paciente,
+      procedureType: this.props.tipo_procedimiento,
+      idRequester: this.props.id_solicitante
+    };
 
+    axios.post(URL, formData )
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
 
     if (this.props.tipo_recurso === "") {
       isError = true;
@@ -118,8 +132,8 @@ export class QuoteForm extends React.Component {
             <Select
               error={!!this.props.errorMessage.tipo_recurso}
               required
-              id="resourceType"
-              name="resourceType"
+              id="tipo_recurso"
+              name="tipo_recurso"
               label="Tipo Recurso"
               labelId="demo-mutiple-checkbox-label"
               fullWidth
@@ -141,8 +155,8 @@ export class QuoteForm extends React.Component {
             <TextField
               error={!!this.props.errorMessage.id_paciente}
               required
-              id="idPatient"
-              name="idPatient"
+              id="id_paciente"
+              name="id_paciente"
               label="ID Paciente"
               fullWidth
               autoComplete="billing postal-code"
@@ -160,8 +174,8 @@ export class QuoteForm extends React.Component {
               labelId="demo-mutiple-checkbox-label"
               error={!!this.props.errorMessage.tipo_procedimiento}
               required
-              id="procedureType"
-              name="procedureType"
+              id="tipo_procedimiento"
+              name="tipo_procedimiento"
               label="Tipo de Procedimiento"
               fullWidth
               autoComplete="billing postal-code"
@@ -182,11 +196,11 @@ export class QuoteForm extends React.Component {
             <TextField
                 error={!!this.props.errorMessage.id_solicitante}
                 required
-                id="dateReserva"
-                name="dateReserva"
+                id="date_reserva"
+                name="date_reserva"
                 label="Fecha Reserva Solicitante"
                 fullWidth
-                value={this.props.dateReserva}
+                value={this.props.date_reserva}
                 onChange={this.props.handleChange}
                 helperText={
                   this.props.errorMessage.id_solicitante &&
@@ -198,8 +212,8 @@ export class QuoteForm extends React.Component {
             <TextField
               error={!!this.props.errorMessage.id_solicitante}
               required
-              id="idRequester"
-              name="idRequester"
+              id="id_solicitante"
+              name="id_solicitante"
               label="ID Solicitante"
               fullWidth
               autoComplete="billing postal-code"
