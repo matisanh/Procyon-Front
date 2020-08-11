@@ -66,7 +66,7 @@ export default class TablaReservas extends React.Component {
               <TableCell >{data.idSolicitud}</TableCell>
               <TableCell >{data.idPaciente}</TableCell>
               <TableCell >{data.resourceType}</TableCell>
-              <TableCell >{data.resourseID}</TableCell>
+              <TableCell >{data.resourceID}</TableCell>
               <TableCell >{data.procedureType}</TableCell>
               <TableCell >{data.dateReserved}</TableCell>
               <TableCell >{data.reservedBlock}</TableCell>
